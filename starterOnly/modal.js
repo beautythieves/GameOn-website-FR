@@ -27,4 +27,8 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-
+// regex for filling the form
+const emailRegex = ^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$;
+if !email.value.matchemailRegex {
+  alert'Adresse e-mail invalide.';
+ }
