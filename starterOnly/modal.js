@@ -27,8 +27,13 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-// regex for filling the form
-const emailRegex = ^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$;
-if !email.value.matchemailRegex {
-  alert'Adresse e-mail invalide.';
- }
+// regex statements for filling the form
+const regexFirstName = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/;
+const regexName =  /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/;
+const regexEmail =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const regexBirtDate = /^(?:0[1-9]|[12]\d|3[01])([\/.-])(?:0[1-9]|1[012])\1(?:19|20)\d\d$/;
+/*pour le nombre de participation au tournoi, pas de regex, juste une valeur*/
+
+
+/* il faut que tous les champs soient remplis 
+et respectent les regex pour que la validation soit effective*/
