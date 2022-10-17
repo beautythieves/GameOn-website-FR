@@ -56,21 +56,26 @@
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
+            <!--ajout id tag "reserve"pour le formulaire-->
             <form
               name="reserve"
+              id="reserve"
               action="index.html"
               method="get"
               onsubmit="return validate();"
             >
+            <!-- ajout de l'attribut required pour le prénom, nom, email, tournoi -->
+            <!-- ajout des patterns (substitut regex)--> 
               <div
                 class="formData">
                 <label>Prénom</label><br>
                 <input
                   class="text-control"
-                  type="text"
+                  type="text" required
                   id="first"
                   name="first"
                   minlength="2"
+                  pattern="[A-Za-z]{2,32}"
                 /><br>
               </div>
               <div
@@ -78,27 +83,30 @@
                 <label>Nom</label><br>
                 <input
                   class="text-control"
-                  type="text"
+                  type="text" required
                   id="last"
                   name="last"
+                  pattern="[A-Za-z]{2,32}"
                 /><br>
               </div>
+              <!--pas de pattern pour email, le navigateur le comprend-->
               <div
                 class="formData">
                 <label>E-mail</label><br>
                 <input
                   class="text-control"
-                  type="email"
+                  type="email" required
                   id="email"
                   name="email"
                 /><br>
               </div>
+              <!--le navigateur comprend la date et affiche un calendrier-->
               <div
                 class="formData">
                 <label>Date de naissance</label><br>
                 <input
                   class="text-control"
-                  type="date"
+                  type="date" required
                   id="birthdate"
                   name="birthdate"
                 /><br>
@@ -106,14 +114,14 @@
               <div
                 class="formData">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <input type="number" required class="text-control" id="quantity" name="quantity" min="0" max="99">
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
                 class="formData">
                 <input
                   class="checkbox-input"
-                  type="radio"
+                  type="radio" 
                   id="location1"
                   name="location"
                   value="New York"
