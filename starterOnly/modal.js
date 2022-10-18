@@ -37,7 +37,7 @@ const modalBody = document.querySelector(".modal-body");
 
 const reserve = document.getElementById("reserve");
 console.log(reserve);
-const firstName = document.getElementById("first").value;
+const firstName = document.getElementById("first");
 console.log(firstName);
 const lastName = document.getElementById("last");
 const email = document.getElementById("email");
@@ -52,7 +52,7 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-//regex statements for filling the form inutile
+//regex statements for filling the form inutile car pattern dans le html
 //const regexFirstName = /^[A-Z a-z]{2,25}$/;/*min 2 caracteres*/
 //const regexName =  /^[A-Z a-z]{2,25}$/;/* min 2 caracteres*/
 //const regexEmail =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -61,6 +61,23 @@ function launchModal() {
 
  //récupération des données des saisies des champs du formulaire
 const submit = document.getElementById("reserve");
+
+
+//fonction validation du prénom et message erreur
+function validateFirstName() {
+  if (firstName.value == ""){
+  alert ("veuillez entrer un prénom")
+  return false;
+  }
+  else if (firstName.value.length <= 1){
+    alert ("veuillez entrer deux caractères ou plus pour le champ du prénom")
+    return false;
+  }
+  else {
+    return true;
+  }
+  };
+
 
 
 //focntion choix du tournoi

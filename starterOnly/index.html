@@ -56,14 +56,14 @@
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
-            <!--ajout id tag "reserve"pour le formulaire-->
+            <!--ajout id tag "reserve"pour le formulaire
+            et changement de "validate" en "validateForm"-->
             <form
               name="reserve"
               id="reserve"
               action="index.html"
               method="get"
-              onsubmit="return validate();"
-            >
+              onsubmit="return validateForm();">
             <!-- ajout de l'attribut required pour le prénom, nom, email, tournoi -->
             <!-- ajout des patterns (substitut regex)--> 
               <div
