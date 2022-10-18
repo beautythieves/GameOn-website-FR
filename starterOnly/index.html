@@ -66,6 +66,7 @@
               onsubmit="return validateForm();">
             <!-- ajout de l'attribut required pour le prénom, nom, email, tournoi -->
             <!-- ajout des patterns (substitut regex)--> 
+            <!-- ajout des balises "small"pour les messages d'erreur lors de la saisie-->
               <div
                 class="formData">
                 <label>Prénom</label><br>
@@ -76,7 +77,10 @@
                   name="first"
                   minlength="2"
                   pattern="[A-Za-z]{2,32}"
-                /><br>
+                >
+                <br>
+                <small id= "firstError">
+                </small>
               </div>
               <div
                 class="formData">
@@ -88,6 +92,7 @@
                   name="last"
                   pattern="[A-Za-z]{2,32}"
                 /><br>
+                <small></small>
               </div>
               <!--pas de pattern pour email, le navigateur le comprend-->
               <div
@@ -99,6 +104,7 @@
                   id="email"
                   name="email"
                 /><br>
+                <small></small>
               </div>
               <!--le navigateur comprend la date et affiche un calendrier-->
               <div
@@ -110,11 +116,13 @@
                   id="birthdate"
                   name="birthdate"
                 /><br>
+                <small></small>
               </div>
               <div
                 class="formData">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" required class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <small></small>
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
@@ -185,6 +193,7 @@
                   <span class="checkbox-icon"></span>
                   Portland</label
                 >
+                <br><small></small>
               </div>
 
               <div
@@ -200,10 +209,11 @@
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
                 <br>
+                <small></small>
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
                   <span class="checkbox-icon"></span>
-                  Je Je souhaite être prévenu des prochains évènements.
+                  Je souhaite être prévenu des prochains évènements.
                 </label>
                 <br>
               </div>

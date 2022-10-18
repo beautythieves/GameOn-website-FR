@@ -36,9 +36,9 @@ const modalBody = document.querySelector(".modal-body");
 
 
 const reserve = document.getElementById("reserve");
-console.log(reserve);
+console.log(reserve, "reserve");
 const firstName = document.getElementById("first");
-console.log(firstName);
+console.log(firstName, "prenom");
 const lastName = document.getElementById("last");
 const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
@@ -62,20 +62,18 @@ function launchModal() {
  //récupération des données des saisies des champs du formulaire
 const submit = document.getElementById("reserve");
 
+//fonction qui renvoie vrai si l'argument est vide
+const isRequired = value => value === '' ? false : true;
 
 //fonction validation du prénom et message erreur
 function validateFirstName() {
   if (firstName.value == ""){
-  alert ("veuillez entrer un prénom")
-  return false;
-  }
-  else if (firstName.value.length <= 1){
-    alert ("veuillez entrer deux caractères ou plus pour le champ du prénom")
-    return false;
-  }
-  else {
-    return true;
-  }
+    document.getElementById('fistError').innerHTML="Veuillez entrez un nom valide";  
+    first.focus(); 
+    return false; 
+}else{
+    document.getElementById('fistError').innerHTML="";  
+}
   };
 
 
