@@ -72,27 +72,23 @@
                 <label>Prénom</label><br>
                 <input
                   class="text-control"
-                  type="text" required
+                  type="text" 
                   id="first"
                   name="first"
                   minlength="2"
-                  pattern="[A-Za-z]{2,32}"
                 >
-                <br>
-                <small id= "firstError">
-                </small>
               </div>
               <div
                 class="formData">
                 <label>Nom</label><br>
                 <input
                   class="text-control"
-                  type="text" required
+                  type="text" 
                   id="last"
                   name="last"
-                  pattern="[A-Za-z]{2,32}"
+                  
                 /><br>
-                <small></small>
+                
               </div>
               <!--pas de pattern pour email, le navigateur le comprend-->
               <div
@@ -100,11 +96,11 @@
                 <label>E-mail</label><br>
                 <input
                   class="text-control"
-                  type="email" required
+                  type="email" 
                   id="email"
                   name="email"
                 /><br>
-                <small></small>
+               
               </div>
               <!--le navigateur comprend la date et affiche un calendrier-->
               <div
@@ -116,13 +112,13 @@
                   id="birthdate"
                   name="birthdate"
                 /><br>
-                <small></small>
+           
               </div>
               <div
                 class="formData">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" required class="text-control" id="quantity" name="quantity" min="0" max="99">
-                <small></small>
+                
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div

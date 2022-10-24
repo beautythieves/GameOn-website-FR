@@ -44,6 +44,8 @@ const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");/* nombre de tournois*/
 const city = document.getElementsByName("location");
+
+console.log(city);
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -52,79 +54,96 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-//regex statements for filling the form inutile car pattern dans le html
-//const regexFirstName = /^[A-Z a-z]{2,25}$/;/*min 2 caracteres*/
-//const regexName =  /^[A-Z a-z]{2,25}$/;/* min 2 caracteres*/
-//const regexEmail =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
 //const regexBirthDate = /^(?:0[1-9]|[12]\d|3[01])([\/.-])(?:0[1-9]|1[012])\1(?:19|20)\d\d$/;
 
 
- //récupération des données des saisies des champs du formulaire
+//récupération des données des saisies des champs du formulaire
 const submit = document.getElementById("reserve");
 
-//fonction qui renvoie vrai si l'argument est vide
-const isRequired = value => value === '' ? false : true;
 
-//fonction validation du prénom et message erreur
-function validateFirstName() {
-  if (firstName.value == ""){
-    document.getElementById('fistError').innerHTML="Veuillez entrez un nom valide";  
-    first.focus(); 
-    return false; 
-}else{
-    document.getElementById('fistError').innerHTML="";  
+
+// fonction validation du formulaire. la date de naissance n'est pas concernée
+//le nombre de tournoi n'est pas concerné (requis par défaut)
+function validateForm() {
+  event.preventDefault();
+  event.stopPropagation();
+  validateFirstName();
+  validateLastName();
+  validateEmail();
+  validateRadio();
 }
-  };
+//fonction validation du prénom et message erreur OK!!!
+function validateFirstName() {
+  const regexFirstName = /^[A-Z a-z]{2,25}$/;/*min 2 caracteres*/
+  const parent = document.getElementById('first').parentNode;
+  if (firstName.value == "" || !regexFirstName.test(firstName.value)) {
+    firstName.focus();
+    parent.setAttribute("data-error", "Veuillez entrez un prénom valide");
+    parent.setAttribute("data-error-visible", "true");
 
-
-
-//focntion choix du tournoi
- function validate() {
-  var formValid = false;
-  var i = 0;
-  while (!formValid && i < location.length) {
-      if (location[i].checked) formValid = true;
-      i++;        
+  } else {
+    parent.setAttribute("data-error-visible", "false");
   }
-  if (!formValid) alert("Veuillez choisir une ville");
- 
 };
+//fonction validation du nom et message erreur OK!!!
+function validateLastName() {
+  const regexLastName = /^[A-Z a-z]{2,25}$/;/*min 2 caracteres*/
+  const parent = document.getElementById('last').parentNode;
+  console.log(parent, "parent1");
+  if (lastName.value == "" || !regexLastName.test(lastName.value)) {
+    lastName.focus();
+    parent.setAttribute("data-error", "Veuillez entrez un nom valide");
+    parent.setAttribute("data-error-visible", "true");
+  } else {
+    parent.setAttribute("data-error-visible", "false");
+  }
+};
+
+//fonction validation du courriel et message erreur OK!!!
+function validateEmail() {
+  const regexEmail = /^[a-zA-Z][a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}$/;
+  const parent = document.getElementById('email').parentNode;
+  console.log(parent, "parent2");
+  console.log(email.value);
+  if (email.value == "" || !regexEmail.test(email.value)) {
+    email.focus();
+    parent.setAttribute("data-error", "Veuillez entrez un courriel valide");
+    parent.setAttribute("data-error-visible", "true");
+  } else {
+    parent.setAttribute("data-error-visible", "false");
+  }
+};
+
+// fonction validation de la ville (bouton radio) OK!!
+//question Lionel: pourquoi ci, le focus ne marche pas et est inutile?
+function validateRadio() {
+  const checkradio = document.querySelector("input[name='location']:checked");
+  const parent = document.querySelector(`input[name='location']`)
+  .closest(`.formData`);
+  console.log(parent, "parent")
+    if(checkradio != null){  //Teste si une ville est cochée 
+      parent.setAttribute("data-error-visible", "false");
+      } else {
+    parent.setAttribute("data-error", "Veuillez choisir une ville");
+    parent.setAttribute("data-error-visible", "true");
+    }
+};
+
+
 
 // message d'alerte confirmation de validation du formulaire
-document.getElementById("reserve").addEventListener("submit", function(e) {
-  e.preventDefault();
+// document.getElementById("reserve").addEventListener("submit", function(e) {
+//   e.preventDefault();
 
 
 
-  alert("Merci, votre réservation est effective");
-});
+//   alert("Merci, votre réservation est effective");
+// });
 
-/*FONCTION NE MARCHE PAS
-function validateForm()  {
-  
 
-  if( regexFirstName.test(firstName) === false) {
-      alert("Veuillez entrer un prénom");
-  }
-  if(regexName.test(lastName) === false) {
-      alert("Veuillez entrer un nom");
-  }
-  if(regexEmail.test(email) === false) {
-    alert ("Veuillez entrer un email");
-  }
-  if(regexBirthDate.test(birthdate) === false) {
-      alert ("Veuillez entrer une date de naissance");
-  }
-  if (quantity === "") {
-    alert ("Veuillez renseigner un nombre y compris 0");
-  }
-  
-  return true;
-};
-console.log(validateForm)
-*/
 
-/* il faut que tous les champs soient remplis 
+/* il faut que tous les champs soient remplis
 et respectent les regex pour que la validation soit effective*/
 // factoriser les elements
 
@@ -133,10 +152,10 @@ et respectent les regex pour que la validation soit effective*/
 function validate(elmDom) {
   //regle de validatio
   switch(elmDom.type){
-    case "text" : 
+    case "text" :
     console.log("...")
       break;
-    default : 
+    default :
       break;
   }
 
@@ -154,17 +173,17 @@ function validate(elmDom) {
   // radio: (content)=>{},
   // number: (content)=>{},
   // email: (content)=>{}
-  /*
+/*
 }
 
 function test(elm){
-  console.log("///",elm)
+console.log("///",elm)
 }
 
 const inputs = document.querySelectorAll("input");
 for (const input of inputs){
-  console.log(input.id,input.type )
-  // validations[input.type](input.value);
+console.log(input.id,input.type )
+// validations[input.type](input.value);
 
 
 }
