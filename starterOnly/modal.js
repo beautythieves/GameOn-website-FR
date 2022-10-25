@@ -16,6 +16,8 @@ Conserver les données du formulaire (ne pas effacer le formulaire) lorsqu'il
  */
 //cela signifie quoi?
 
+
+
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -41,11 +43,12 @@ const firstName = document.getElementById("first");
 console.log(firstName, "prenom");
 const lastName = document.getElementById("last");
 const email = document.getElementById("email");
-const birthdate = document.getElementById("birthdate");
+const birthdate = document.getElementById('birthdate');
 const quantity = document.getElementById("quantity");/* nombre de tournois*/
 const city = document.getElementsByName("location");
 
 console.log(city);
+
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -115,6 +118,44 @@ function validateEmail() {
   }
 };
 
+// validation de la date de naissance
+
+  /* récupération de la date précise actuelle  OK!!! */
+  const dateToday = new Date();/* date précise lors de la session en cours*/
+  console.log (dateToday);
+  const day = dateToday.getDate() ;/* jour du mois en cours */
+  console.log (day);
+  const month = dateToday.getMonth()+1;/* mois de l'année en cours"+1" car renvoie "0" pour janvier*/
+  console.log (month);
+  const year = dateToday.getFullYear();/* année en cours*/
+  console.log (year);
+  
+  /* récupération de la date de naisance saisie PROBLEME!!!*/
+  const dayOfBirth = new Date(value); 
+  console.log (dayOfBirth, "date saisie");
+
+
+  //function validateAge() {
+  const birthDatePlayer = document.getElementById('birthdate').value;
+ console.log(birthDatePlayer, 'datenaissance');
+//}
+
+console.log(quantity.value);
+//validation du champ nombre de tournois PROBLEME!!!
+function validateTournament() {
+  const quantityTournament = document.querySelector("input[name='quantity']");
+  const parent = document.querySelector(`input[name='quantity']`)
+  .closest(`.formData`);
+  console.log (parent);
+  if (quantityTournament.value == "" || null ) {
+    quantity.focus();
+    parent.setAttribute("data-error", "Veuillez entrez un nombre");
+    parent.setAttribute("data-error-visible", "true");
+  } else {
+    parent.setAttribute("data-error-visible", "false");
+  }
+  console.log(quantity.value);
+};
 // fonction validation de la ville (bouton radio) OK!!
 //question Lionel: pourquoi ci, le focus ne marche pas et est inutile?
 function validateRadio() {
@@ -131,6 +172,25 @@ function validateRadio() {
 };
 
 
+function validate(date){
+  var eighteenYearsAgo = moment().subtract(18, "years");
+  var birthday = moment(date);
+  console.log(birthday)
+
+  if (!birthday.isValid()) {
+      return "invalid date";    
+  }
+  else if (eighteenYearsAgo.isAfter(birthday)) {
+      return "okay, you're good";    
+  }
+  else {
+      return "sorry, no";    
+  }
+}
+// fonction validation âge (plus de 18 ans, max 110 ans)
+function validateBirthdate() {
+  
+}
 
 // message d'alerte confirmation de validation du formulaire
 // document.getElementById("reserve").addEventListener("submit", function(e) {
