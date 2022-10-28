@@ -1,22 +1,3 @@
-/* a faire: implémenter les données du formulaire
-(1) Lier les labels aux entrées dans le HTML en utilisant les attributs "for" et "id" dans le code existant. Corriger le code HTML quand nécessaire.
-(2) Utiliser du JavaScript pur (pas de jQuery) pour terminer le formulaire :
-
-Le formulaire doit être valide quand l'utilisateur clique sur "Submit"
-Les données doivent être saisies correctement :
-(1) Le champ Prénom a un minimum de 2 caractères / n'est pas vide.
-(2) Le champ du nom de famille a un minimum de 2 caractères / n'est pas vide.
-(3) L'adresse électronique est valide.
-(4) Pour le nombre de concours, une valeur numérique est saisie.
-(5) Un bouton radio est sélectionné.FAIT
-(6) La case des conditions générales est cochée, 
-l'autre case est facultative / peut être laissée décochée.
-Conserver les données du formulaire (ne pas effacer le formulaire) lorsqu'il
- ne passe pas la validation.FAIT
- */
-//cela signifie quoi?
-
-
 
 function editNav() {
   var x = document.getElementById("myTopnav");
@@ -55,27 +36,56 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
-}
+};
+
+//close modal event
+//modalBtn.forEach((btn) => btn.addEventListener("click", closeModal));
+
+// close modal form and reste datas in the form
+function closeModal() {
+  modalbg.style.display = "none";
+  document.getElementById("reserve").rest();
+};
 
 
-//const regexBirthDate = /^(?:0[1-9]|[12]\d|3[01])([\/.-])(?:0[1-9]|1[012])\1(?:19|20)\d\d$/;
+/* A IMPLEMENTER
+ SI VALIDATION DU FORMULAIRE (TOUS LES CHAMPS SONT CORRECTEMENT REMPLIS°
+  LE FORMULAIRE EST ENVOYE et est effacé 
+  pour laisser place à un message (cf maquette figma)
+  "merci pour votre inscription"
+  et le bouton rouge contient le message "fermer"
 
 
+
+
+
+*/
 //récupération des données des saisies des champs du formulaire
 const submit = document.getElementById("reserve");
 
 
 
-// fonction validation du formulaire. la date de naissance n'est pas concernée
-//le nombre de tournoi n'est pas concerné (requis par défaut)
-function validateForm() {
+
+
+const form = document.getElementById("reserve");
+form.addEventListener("submit", validateForm)
+
+//validateForm();
+
+// fonction validation du formulaire. 
+function validateForm(event) {
   event.preventDefault();
   event.stopPropagation();
   validateFirstName();
   validateLastName();
   validateEmail();
   validateRadio();
-}
+  validateTournament();
+  setDateLimits();
+};
+
+
+
 //fonction validation du prénom et message erreur OK!!!
 function validateFirstName() {
   const regexFirstName = /^[A-Z a-z]{2,25}$/;/*min 2 caracteres*/
@@ -118,30 +128,46 @@ function validateEmail() {
   }
 };
 
+function setDateLimits(){
+  const dateToday = new Date();
+    // console.log (dateToday);
+  const day = dateToday.getDate() ;/* jour du mois en cours */
+  // console.log (day);
+  const month = dateToday.getMonth()+1;/* mois de l'année en cours"+1" car renvoie "0" pour janvier*/
+  // console.log (month);
+  const year = dateToday.getFullYear();/* année en cours*/
+  // console.log (year);
+  let date = new Date(`${year-18}-${month}-${day}`).toISOString().split("T")[0];
+  console.log(birthdate, date);
+  birthdate.setAttribute("max",date )
+  date = new Date(`${year-100}-${month}-${day}`).toISOString().split("T")[0];
+  console.log(birthdate, date);
+  birthdate.setAttribute("min",date )
+}
+
+
+
+function getDBirthdate(){
 // validation de la date de naissance
 
   /* récupération de la date précise actuelle  OK!!! */
-  const dateToday = new Date();/* date précise lors de la session en cours*/
-  console.log (dateToday);
-  const day = dateToday.getDate() ;/* jour du mois en cours */
-  console.log (day);
-  const month = dateToday.getMonth()+1;/* mois de l'année en cours"+1" car renvoie "0" pour janvier*/
-  console.log (month);
-  const year = dateToday.getFullYear();/* année en cours*/
-  console.log (year);
+  // const  = new Date();/* date précise lors de la session en cours*/
+
   
   /* récupération de la date de naisance saisie PROBLEME!!!*/
-  const dayOfBirth = new Date(value); 
-  console.log (dayOfBirth, "date saisie");
+ 
 
 
   //function validateAge() {
-  const birthDatePlayer = document.getElementById('birthdate').value;
- console.log(birthDatePlayer, 'datenaissance');
+  
+ console.log(birthdate.value, 'datenaissance', birthdate.isValid);
 //}
+}
+
+
 
 console.log(quantity.value);
-//validation du champ nombre de tournois PROBLEME!!!
+//validation du champ nombre de tournois OK!!!
 function validateTournament() {
   const quantityTournament = document.querySelector("input[name='quantity']");
   const parent = document.querySelector(`input[name='quantity']`)
@@ -172,25 +198,6 @@ function validateRadio() {
 };
 
 
-function validate(date){
-  var eighteenYearsAgo = moment().subtract(18, "years");
-  var birthday = moment(date);
-  console.log(birthday)
-
-  if (!birthday.isValid()) {
-      return "invalid date";    
-  }
-  else if (eighteenYearsAgo.isAfter(birthday)) {
-      return "okay, you're good";    
-  }
-  else {
-      return "sorry, no";    
-  }
-}
-// fonction validation âge (plus de 18 ans, max 110 ans)
-function validateBirthdate() {
-  
-}
 
 // message d'alerte confirmation de validation du formulaire
 // document.getElementById("reserve").addEventListener("submit", function(e) {
@@ -249,3 +256,5 @@ console.log(input.id,input.type )
 }
 
 */
+
+setDateLimits();

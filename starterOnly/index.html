@@ -52,7 +52,7 @@
         </button>
       </div>
 
-      <div class="bground">
+      <div class="bground"><!--ouverture et fermeture modale en js-->
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
@@ -62,11 +62,7 @@
               name="reserve"
               id="reserve"
               action="index.html"
-              method="get"
-              onsubmit="return validateForm();">
-            <!-- ajout de l'attribut required pour le prénom, nom, email, tournoi -->
-            <!-- ajout des patterns (substitut regex)--> 
-            <!-- ajout des balises "small"pour les messages d'erreur lors de la saisie-->
+              method="get">
               <div
                 class="formData">
                 <label>Prénom</label><br>
