@@ -17,9 +17,9 @@ const formData = document.querySelectorAll(".formData");
 console.log(formData, "infos");
 const modalBody = document.querySelector(".modal-body");
 
+const form = document.getElementById("reserve");
 
-const reserve = document.getElementById("reserve");
-console.log(reserve, "reserve");
+console.log(form, "reserve");
 const firstName = document.getElementById("first");
 console.log(firstName, "prenom");
 const lastName = document.getElementById("last");
@@ -30,59 +30,43 @@ const city = document.getElementsByName("location");
 
 console.log(city);
 
-// launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+
 
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
 };
+// launch modal event
+modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
+// close modal form and reset datas in the form
+function closeModal() {
+  modalbg.style.display = "none";
+  document.getElementById("reserve").reset();
+};
 //close modal event
 //modalBtn.forEach((btn) => btn.addEventListener("click", closeModal));
 
-// close modal form and reste datas in the form
-function closeModal() {
-  modalbg.style.display = "none";
-  document.getElementById("reserve").rest();
-};
 
 
-/* A IMPLEMENTER
- SI VALIDATION DU FORMULAIRE (TOUS LES CHAMPS SONT CORRECTEMENT REMPLIS°
-  LE FORMULAIRE EST ENVOYE et est effacé 
-  pour laisser place à un message (cf maquette figma)
-  "merci pour votre inscription"
-  et le bouton rouge contient le message "fermer"
-
-
-
-
-
-*/
-//récupération des données des saisies des champs du formulaire
-const submit = document.getElementById("reserve");
-
-
-
-
-
-const form = document.getElementById("reserve");
-form.addEventListener("submit", validateForm)
-
-//validateForm();
-
+form.addEventListener("submit", validateForm)/* when submit form => function validateform start*/ 
 // fonction validation du formulaire. 
 function validateForm(event) {
+  
   event.preventDefault();
   event.stopPropagation();
+  console.log(event, "evenement");
   validateFirstName();
   validateLastName();
   validateEmail();
   validateRadio();
   validateTournament();
   setDateLimits();
-};
+  closeModal();
+   };
+  // console.log (validateForm(), "achemene")
+   
+  //!!!! reste le rechargement de la modale avec message de remerciement
 
 
 
