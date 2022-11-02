@@ -42,7 +42,7 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // close modal form and reset datas in the form
 function closeModal() {
   modalbg.style.display = "none";
-  document.getElementById("reserve").reset();
+  form.reset();
 };
 //close modal event
 //modalBtn.forEach((btn) => btn.addEventListener("click", closeModal));
@@ -52,25 +52,26 @@ function closeModal() {
 form.addEventListener("submit", validateForm)/* when submit form => function validateform start*/ 
 // fonction validation du formulaire. 
 function validateForm(event) {
-  
   event.preventDefault();
   event.stopPropagation();
-  console.log(event, "evenement");
-  validateFirstName();
-  validateLastName();
-  validateEmail();
-  validateRadio();
-  validateTournament();
-  setDateLimits();
-  closeModal();
+  if(!validateFirstName() && !validateLastName() && validateRadio()
+ && validateEmail() && validateRadio()&& validateTournament()&&validateDate())return ;
+   greetings();
    };
-  // console.log (validateForm(), "achemene")
    
   //!!!! reste le rechargement de la modale avec message de remerciement
+function greetings(){
+  form.innerHTML= /*html*/`<div class ="content"> 
+  Merci pour votre <br>inscription</div>
+  <button class="btn-submit" onclick= "closeModal()"> 
+  Fermer </button>`
+}
 
-
-
-//fonction validation du prénom et message erreur OK!!!
+/**
+ * fonction validation du prénom et message erreur OK!!
+ *
+ * @return  {Boolean}  true si valide sinon false
+ */
 function validateFirstName() {
   const regexFirstName = /^[A-Z a-z]{2,25}$/;/*min 2 caracteres*/
   const parent = document.getElementById('first').parentNode;
@@ -78,10 +79,10 @@ function validateFirstName() {
     firstName.focus();
     parent.setAttribute("data-error", "Veuillez entrez un prénom valide");
     parent.setAttribute("data-error-visible", "true");
-
-  } else {
-    parent.setAttribute("data-error-visible", "false");
+    return false;
   }
+  parent.setAttribute("data-error-visible", "false");
+  return true;
 };
 //fonction validation du nom et message erreur OK!!!
 function validateLastName() {
@@ -92,10 +93,11 @@ function validateLastName() {
     lastName.focus();
     parent.setAttribute("data-error", "Veuillez entrez un nom valide");
     parent.setAttribute("data-error-visible", "true");
-  } else {
+    return false;
+  } 
     parent.setAttribute("data-error-visible", "false");
-  }
-};
+    return true;
+ };
 
 //fonction validation du courriel et message erreur OK!!!
 function validateEmail() {
@@ -107,12 +109,13 @@ function validateEmail() {
     email.focus();
     parent.setAttribute("data-error", "Veuillez entrez un courriel valide");
     parent.setAttribute("data-error-visible", "true");
-  } else {
+    return false;
+  } 
     parent.setAttribute("data-error-visible", "false");
-  }
-};
+    return true;
+ };
 
-function setDateLimits(){
+ function setDateLimits(){
   const dateToday = new Date();
     // console.log (dateToday);
   const day = dateToday.getDate() ;/* jour du mois en cours */
@@ -128,25 +131,35 @@ function setDateLimits(){
   console.log(birthdate, date);
   birthdate.setAttribute("min",date )
 }
-
-
-
-function getDBirthdate(){
-// validation de la date de naissance
-
-  /* récupération de la date précise actuelle  OK!!! */
-  // const  = new Date();/* date précise lors de la session en cours*/
-
-  
-  /* récupération de la date de naisance saisie PROBLEME!!!*/
- 
-
-
-  //function validateAge() {
-  
- console.log(birthdate.value, 'datenaissance', birthdate.isValid);
-//}
+function validateDate(){
+  const parent = birthdate.parentNode;
+  let isValid = true;
+  const selectedDate = new Date(birthdate.value);
+  const dateToday = new Date();
+  const day = dateToday.getDate() ;/* jour du mois en cours */
+  const month = dateToday.getMonth()+1;/* mois de l'année en cours"+1" car renvoie "0" pour janvier*/
+  const year = dateToday.getFullYear();/* année en cours*/
+  let date = new Date(`${year-18}-${month}-${day}`);
+  if (selectedDate > date){
+    isValid = false;
+  }
+  else{
+    date = new Date(`${year-100}-${month}-${day}`);
+    if (selectedDate < date){
+      isValid = false;
+    }
+  }
+  if (!isValid) {
+    birthdate.focus();
+    parent.setAttribute("data-error", "Veuillez entrez une date valide");
+    parent.setAttribute("data-error-visible", "true");
+    return false;
+  }
+  parent.setAttribute("data-error-visible", "false");
+  return true;
 }
+
+
 
 
 
@@ -161,13 +174,13 @@ function validateTournament() {
     quantity.focus();
     parent.setAttribute("data-error", "Veuillez entrez un nombre");
     parent.setAttribute("data-error-visible", "true");
-  } else {
+    return false;
+  } 
     parent.setAttribute("data-error-visible", "false");
-  }
-  console.log(quantity.value);
-};
+    return true;
+ };
+
 // fonction validation de la ville (bouton radio) OK!!
-//question Lionel: pourquoi ci, le focus ne marche pas et est inutile?
 function validateRadio() {
   const checkradio = document.querySelector("input[name='location']:checked");
   const parent = document.querySelector(`input[name='location']`)
@@ -175,10 +188,11 @@ function validateRadio() {
   console.log(parent, "parent")
     if(checkradio != null){  //Teste si une ville est cochée 
       parent.setAttribute("data-error-visible", "false");
-      } else {
+      return true;
+    }
     parent.setAttribute("data-error", "Veuillez choisir une ville");
     parent.setAttribute("data-error-visible", "true");
-    }
+    return false;
 };
 
 
