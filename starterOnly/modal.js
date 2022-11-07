@@ -21,7 +21,7 @@ const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity"); /* nombre de tournois*/
 const city = document.getElementsByName("location");
-
+const modalSeendButton = document.getElementById("sendmodal");
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
@@ -35,15 +35,26 @@ function closeModal() {
   modalbg.style.display = "none";
   form.reset();
 }
+// if click outside the modal, the modal close okay!!!
+modalbg.addEventListener('click', (event) => {
+  const clickInsideModalBody = event.target.closest('.modal-body');
+  if (!clickInsideModalBody) {
+     closeModal()
+  }
+});
+
+function submitForm() {
+  form.submit();
+}
 //close modal event
 //modalBtn.forEach((btn) => btn.addEventListener("click", closeModal));
 
-form.addEventListener(
-  "submit",
-  validateForm
-); /* when submit form => function validateform start*/
+form.addEventListener("submit", validateForm);
+/* when submit form => function validateform start*/
 // fonction validation du formulaire.
-// pb ici greetings fonction
+/*si validatefrom n'est pas retournée, 
+alors fonction greetings est lancée*/
+
 function validateForm(event) {
   event.preventDefault();
   event.stopPropagation();
@@ -54,17 +65,37 @@ function validateForm(event) {
     !validateRadio() &&
     !validateTournament() &&
     !validateDate()
-  )
+  ) {
     return;
-  /*greetings() ;*/
+  }
+  console.log ("form valid")
+  greetings()
 }
 
+modalSeendButton.addEventListener("click", greetings);
+
+function greetings (event) {
+  event.preventDefault();
+  event.stopPropagation();
+  if (
+    validateForm(formData) === false
+  ) {return greetings}
+};
+
+/*
+formIsValid();
+function formIsValid() {
+  if (!validateForm()) {
+     greetings();
+  }
+}
+*/
 //!!!! reste le rechargement de la modale avec message de remerciement
 function greetings() {
   form.innerHTML = /*html*/ `<div class ="content"> 
   Merci pour votre <br>inscription</div>
   <button class="btn-submit" onclick= "closeModal()"> 
-  Fermer </button>`;
+  Fermer </button> `;
 }
 
 /**
@@ -120,7 +151,7 @@ function setDateLimits() {
   const dateToday = new Date();
   // console.log (dateToday);
   const day = dateToday.getDate(); /* jour du mois en cours */
-  // console.log (day);
+   console.log (day);
   const month =
     dateToday.getMonth() +
     1; /* mois de l'année en cours"+1" car renvoie "0" pour janvier*/

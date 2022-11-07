@@ -30,7 +30,7 @@
     </div>
   </div>
     <main>
-      <div class="hero-section">
+      <div class="hero-section" >
         <div class="hero-content">
           <h1 class="hero-headline">
             Marathon national<br>
@@ -52,8 +52,8 @@
         </button>
       </div>
 
-      <div class="bground" onclick=" closeModal()"><!--ouverture et fermeture modale en js-->
-        <div class="content">
+      <div class="bground"><!--ouverture et fermeture modale en js-->
+        <div class="content" >
           <span class="close" onclick = closeModal()></span>
           <div class="modal-body">
             <!--ajout id tag "reserve"pour le formulaire-->
@@ -207,15 +207,17 @@
                 </label>
                 <br>
               </div>
+              <!---add id for better target closemodal in js -->
               <input
                 class="btn-submit"
                 type="submit"
                 class="button"
                 value="C'est parti"
+                id=" sendmodal"
               />
             </form>
           </div>
-        </div><!--fin content -->
+        </div><!--end content -->
       </div>
     </main>
     <footer>
