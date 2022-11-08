@@ -43,17 +43,15 @@ modalbg.addEventListener('click', (event) => {
   }
 });
 
-function submitForm() {
-  form.submit();
-}
+// function submitForm() {
+//   form.submit();
+// }
+
 //close modal event
 //modalBtn.forEach((btn) => btn.addEventListener("click", closeModal));
 
-form.addEventListener("submit", validateForm);
 /* when submit form => function validateform start*/
-// fonction validation du formulaire.
-/*si validatefrom n'est pas retournée, 
-alors fonction greetings est lancée*/
+form.addEventListener("submit", validateForm);
 
 function validateForm(event) {
   event.preventDefault();
@@ -65,11 +63,16 @@ function validateForm(event) {
     !validateRadio() &&
     !validateTournament() &&
     !validateDate()
-  ) {
+  ) 
     return;
-  }
-  console.log ("form valid")
-  greetings()
+    else (greetings())
+}
+
+function greetings() {
+  form.innerHTML = /*html*/ `<div class ="content"> 
+  Merci pour votre <br>inscription</div>
+  <button class="btn-submit" onclick= "closeModal()"> 
+  Fermer </button> `;
 }
 
 modalSeendButton.addEventListener("click", greetings);
@@ -79,9 +82,9 @@ function greetings (event) {
   event.stopPropagation();
   if (
     validateForm(formData) === false
-  ) {return greetings}
-};
-
+  ) {return greetings()}
+  ;
+  }
 /*
 formIsValid();
 function formIsValid() {
@@ -91,12 +94,7 @@ function formIsValid() {
 }
 */
 //!!!! reste le rechargement de la modale avec message de remerciement
-function greetings() {
-  form.innerHTML = /*html*/ `<div class ="content"> 
-  Merci pour votre <br>inscription</div>
-  <button class="btn-submit" onclick= "closeModal()"> 
-  Fermer </button> `;
-}
+
 
 /**
  * fonction validation du prénom et message erreur OK!!
@@ -167,6 +165,7 @@ function setDateLimits() {
   console.log(birthdate, date);
   birthdate.setAttribute("min", date);
 }
+
 function validateDate() {
   const parent = birthdate.parentNode;
   let isValid = true;
