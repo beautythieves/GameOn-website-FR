@@ -64,27 +64,34 @@ function validateForm(event) {
     !validateTournament() &&
     !validateDate()
   ) 
-    return;
-    else (greetings())
+    return false;
+    else {
+      greetings();
+    }
+ 
 }
 
 function greetings() {
-  form.innerHTML = /*html*/ `<div class ="content"> 
-  Merci pour votre <br>inscription</div>
-  <button class="btn-submit" onclick= "closeModal()"> 
+  form.innerHTML = /*html*/ `<div class ="content" 
+  style= "display: flex ; flex-grow: 4; justify-content: center; align-items: center"> 
+  <p >Merci pour votre inscription</p>
+  </div>
+  <button class="btn-submit"  onclick= "closeModal()"> 
   Fermer </button> `;
+  
+  
 }
 
-modalSeendButton.addEventListener("click", greetings);
+// modalSeendButton.addEventListener("click", greetings);
 
-function greetings (event) {
-  event.preventDefault();
-  event.stopPropagation();
-  if (
-    validateForm(formData) === false
-  ) {return greetings()}
-  ;
-  }
+// function greetings (event) {
+//   event.preventDefault();
+//   event.stopPropagation();
+//   if (
+//     validateForm(formData) === false
+//   ) {return greetings()}
+//   ;
+//   }
 /*
 formIsValid();
 function formIsValid() {
