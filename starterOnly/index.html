@@ -56,6 +56,12 @@
         <div class="content" >
           <span class="close" onclick = closeModal()></span>
           <div class="modal-body">
+            <div id = "greetings">
+              <div class="content">
+                Merci pour votre inscription
+              </div>
+              <button type=" button" class=" btn-submit" onclick="submitForm()">Fermer</button>
+            </div>
             <!--ajout id tag "reserve"pour le formulaire-->
             <form
               name="reserve"
@@ -207,13 +213,11 @@
                 </label>
                 <br>
               </div>
-              <!---add id for better target closemodal in js -->
               <input
-                class="btn-submit"
-                type="submit"
+                class="btn-validate"
+                type="button"
                 class="button"
                 value="C'est parti"
-                id=" sendmodal"
               />
             </form>
           </div>

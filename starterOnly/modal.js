@@ -21,7 +21,7 @@ const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity"); /* nombre de tournois*/
 const city = document.getElementsByName("location");
-const modalSeendButton = document.getElementById("sendmodal");
+
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
@@ -36,50 +36,64 @@ function closeModal() {
   form.reset();
 }
 // if click outside the modal, the modal close okay!!!
-modalbg.addEventListener('click', (event) => {
-  const clickInsideModalBody = event.target.closest('.modal-body');
+modalbg.addEventListener("click", (event) => {
+  const clickInsideModalBody = event.target.closest(".modal-body");
   if (!clickInsideModalBody) {
-     closeModal()
+    closeModal();
   }
 });
+// submit the form when click on "fermer" modal button
+document.querySelector(".btn-submit").addEventListener("click", submitForm);
 
-// function submitForm() {
-//   form.submit();
-// }
+function submitForm(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  form.submit();
+}
 
 //close modal event
 //modalBtn.forEach((btn) => btn.addEventListener("click", closeModal));
 
 /* when submit form => function validateform start*/
-form.addEventListener("submit", validateForm);
+document.querySelector(".btn-validate").addEventListener("click", validateForm);
 
 function validateForm(event) {
   event.preventDefault();
   event.stopPropagation();
-  if (
-    !validateFirstName() &&
-    !validateLastName() &&
-    !validateEmail() &&
-    !validateRadio() &&
-    !validateTournament() &&
-    !validateDate()
-  ) 
-    return false;
-    else {
-      greetings();
-    }
- 
+  /* array with all the conditions to validate the form*/
+  const conditions = [
+    validateFirstName(),
+    validateLastName(),
+    validateEmail(),
+    validateRadio(),
+    validateTournament(),
+    validateDate(),
+  ];
+  if (conditions.filter((cond) => !cond).length) {
+    console.log("Formulaire invalide");
+    return;
+  }
+  console.log("Formulaire valide");
+  greetings();
 }
 
+// if (
+//   !validateFirstName() &&
+//   !validateLastName() &&
+//   !validateEmail() &&
+//   !validateRadio() &&
+//   !validateTournament() &&
+//   !validateDate()
+// )
+//   return false;
+//   else {
+//     greetings();
+//   }
+
+/*pb de hauteru de la div content*/
 function greetings() {
-  form.innerHTML = /*html*/ `<div class ="content" 
-  style= "display: flex ; flex-grow: 4; justify-content: center; align-items: center"> 
-  <p >Merci pour votre inscription</p>
-  </div>
-  <button class="btn-submit"  onclick= "closeModal()"> 
-  Fermer </button> `;
-  
-  
+  document.querySelector("#greetings").style.display = "block";
+  form.style.display = "none";
 }
 
 // modalSeendButton.addEventListener("click", greetings);
@@ -101,7 +115,6 @@ function formIsValid() {
 }
 */
 //!!!! reste le rechargement de la modale avec message de remerciement
-
 
 /**
  * fonction validation du prénom et message erreur OK!!
@@ -156,7 +169,7 @@ function setDateLimits() {
   const dateToday = new Date();
   // console.log (dateToday);
   const day = dateToday.getDate(); /* jour du mois en cours */
-   console.log (day);
+  console.log(day);
   const month =
     dateToday.getMonth() +
     1; /* mois de l'année en cours"+1" car renvoie "0" pour janvier*/

@@ -324,6 +324,7 @@ input[data-error]::after {
   transform: rotate(-45deg);
 }
 .btn-submit,
+.btn-validate,
 .btn-signup {
   background: #fe142f;
   display: block;
@@ -529,3 +530,8 @@ footer {
   }
 }
 
+/*add greetings display none to hide it */
+#greetings{
+  display:none;
+
+}
