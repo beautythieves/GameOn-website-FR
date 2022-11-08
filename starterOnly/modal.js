@@ -114,7 +114,6 @@ function formIsValid() {
   }
 }
 */
-//!!!! reste le rechargement de la modale avec message de remerciement
 
 /**
  * fonction validation du prénom et message erreur OK!!
