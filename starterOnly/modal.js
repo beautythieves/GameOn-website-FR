@@ -114,54 +114,46 @@ function formIsValid() {
   }
 }
 */
-
-/**
- * fonction validation du prénom et message erreur OK!!
- *
- * @return  {Boolean}  true si valide sinon false
- */
-function validateFirstName() {
-  const regexFirstName = /^[A-Z a-z]{2,25}$/; /*min 2 caracteres*/
-  const parent = document.getElementById("first").parentNode;
-  if (firstName.value == "" || !regexFirstName.test(firstName.value)) {
-    firstName.focus();
-    parent.setAttribute("data-error", "Veuillez entrez un prénom valide");
+function validateField(domElement, regex, message) {
+  const parent = domElement.parentNode;
+  console.log(parent, "parent1");
+  if (domElement.value == "" || !regex.test(domElement.value)) {
+    domElement.focus();
+    parent.setAttribute("data-error", message);
     parent.setAttribute("data-error-visible", "true");
     return false;
   }
   parent.setAttribute("data-error-visible", "false");
   return true;
 }
+/**
+ * FUNCTION VALIDATION FIRST NAME OK
+ *
+ * @return  {Boolean}  true si valide sinon false
+ */
+function validateFirstName() {
+  const regexFirstName = /^[A-Z a-z]{2,25}$/; /*min 2 caracteres*/
+  return validateField(
+    firstName,
+    regexFirstName,
+    "Veuillez entrez un prénom valide"
+  );
+}
 //FUNCTION VALIDATION NAME AND ERROR MESAGE OK!!!
 function validateLastName() {
   const regexLastName = /^[A-Z a-z]{2,25}$/; /*min 2 caracteres*/
-  const parent = document.getElementById("last").parentNode;
-  console.log(parent, "parent1");
-  if (lastName.value == "" || !regexLastName.test(lastName.value)) {
-    lastName.focus();
-    parent.setAttribute("data-error", "Veuillez entrez un nom valide");
-    parent.setAttribute("data-error-visible", "true");
-    return false;
-  }
-  parent.setAttribute("data-error-visible", "false");
-  return true;
+  return validateField(
+    lastName,
+    regexLastName,
+    "Veuillez entrez un nom valide"
+  );
 }
 
 //FUNCTION VALIDATION EMAIL AND ERROR MESSAGE OK!!!
 function validateEmail() {
   const regexEmail =
     /^[a-zA-Z][a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}$/;
-  const parent = document.getElementById("email").parentNode;
-  console.log(parent, "parent2");
-  console.log(email.value);
-  if (email.value == "" || !regexEmail.test(email.value)) {
-    email.focus();
-    parent.setAttribute("data-error", "Veuillez entrez un courriel valide");
-    parent.setAttribute("data-error-visible", "true");
-    return false;
-  }
-  parent.setAttribute("data-error-visible", "false");
-  return true;
+  return validateField(email, regexEmail, "Veuillez entrez un courriel valide");
 }
 
 function setDateLimits() {
@@ -246,6 +238,19 @@ function validateRadio() {
   parent.setAttribute("data-error", "Veuillez choisir une ville");
   parent.setAttribute("data-error-visible", "true");
   return false;
+}
+
+function validateField(domElement, regex, message) {
+  const parent = domElement.parentNode;
+  console.log(parent, "parent1");
+  if (domElement.value == "" || !regex.test(domElement.value)) {
+    domElement.focus();
+    parent.setAttribute("data-error", message);
+    parent.setAttribute("data-error-visible", "true");
+    return false;
+  }
+  parent.setAttribute("data-error-visible", "false");
+  return true;
 }
 
 setDateLimits();
