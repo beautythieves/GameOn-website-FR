@@ -132,7 +132,7 @@ function validateFirstName() {
   parent.setAttribute("data-error-visible", "false");
   return true;
 }
-//fonction validation du nom et message erreur OK!!!
+//FUNCTION VALIDATION NAME AND ERROR MESAGE OK!!!
 function validateLastName() {
   const regexLastName = /^[A-Z a-z]{2,25}$/; /*min 2 caracteres*/
   const parent = document.getElementById("last").parentNode;
@@ -147,7 +147,7 @@ function validateLastName() {
   return true;
 }
 
-//fonction validation du courriel et message erreur OK!!!
+//FUNCTION VALIDATION EMAIL AND ERROR MESSAGE OK!!!
 function validateEmail() {
   const regexEmail =
     /^[a-zA-Z][a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}$/;
@@ -214,8 +214,7 @@ function validateDate() {
   return true;
 }
 
-console.log(quantity.value);
-//validation du champ nombre de tournois OK!!!
+//FUNCTION VALIDATION NUMBER OF TOURNAMENTS OK!!!
 function validateTournament() {
   const quantityTournament = document.querySelector("input[name='quantity']");
   const parent = document
@@ -232,7 +231,7 @@ function validateTournament() {
   return true;
 }
 
-// fonction validation de la ville (bouton radio) OK!!
+// FUNCTION VALIDATION CITY CHOICE OK!!
 function validateRadio() {
   const checkradio = document.querySelector("input[name='location']:checked");
   const parent = document
