@@ -77,54 +77,10 @@ function validateForm(event) {
   greetings();
 }
 
-// if (
-//   !validateFirstName() &&
-//   !validateLastName() &&
-//   !validateEmail() &&
-//   !validateRadio() &&
-//   !validateTournament() &&
-//   !validateDate()
-// )
-//   return false;
-//   else {
-//     greetings();
-//   }
-
 /*pb de hauteru de la div content*/
 function greetings() {
   document.querySelector("#greetings").style.display = "block";
   form.style.display = "none";
-}
-
-// modalSeendButton.addEventListener("click", greetings);
-
-// function greetings (event) {
-//   event.preventDefault();
-//   event.stopPropagation();
-//   if (
-//     validateForm(formData) === false
-//   ) {return greetings()}
-//   ;
-//   }
-/*
-formIsValid();
-function formIsValid() {
-  if (!validateForm()) {
-     greetings();
-  }
-}
-*/
-function validateField(domElement, regex, message) {
-  const parent = domElement.parentNode;
-  console.log(parent, "parent1");
-  if (domElement.value == "" || !regex.test(domElement.value)) {
-    domElement.focus();
-    parent.setAttribute("data-error", message);
-    parent.setAttribute("data-error-visible", "true");
-    return false;
-  }
-  parent.setAttribute("data-error-visible", "false");
-  return true;
 }
 /**
  * FUNCTION VALIDATION FIRST NAME OK
