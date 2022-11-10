@@ -35,10 +35,10 @@ img {
   margin: 3.5%;
 }
 .header-logo {
-    float: left;
+  float: left;
 }
 .main-navbar {
-    float: right;
+  float: right;
 }
 .topnav a {
   float: left;
@@ -67,17 +67,22 @@ img {
 .topnav .icon {
   display: none;
 }
-
+/* adding red color burger menu red responsive*/
 @media screen and (max-width: 768px) {
-  .topnav a {display: none;}
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
+    color: red;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
+  .topnav.responsive {
+    position: relative;
+  }
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
@@ -90,16 +95,16 @@ img {
   }
 }
 
-
-
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
+@media screen and (max-width: 540px) {
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
     margin-top: -15px;
   }
-} 
+}
 
 main {
   font-size: 130%;
@@ -111,8 +116,6 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
 }
 
 .modal-btn {
@@ -226,7 +229,6 @@ input {
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
-
 
 /* 
 input[data-error]::after {
@@ -497,13 +499,16 @@ footer {
   .hero-content .btn-signup {
     display: none;
   }
+  /*changing font size & weight for responsive*/
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 2rem;
+    font-weight: bold;
     white-space: normal;
   }
+  /* changing font size to 13px as said on the template*/
   .hero-text {
     width: unset;
-    font-size: 1.5rem;
+    font-size: 13px;
   }
   .hero-img img {
     border-radius: 10px;
@@ -529,22 +534,67 @@ footer {
     opacity: 1;
   }
 }
-
+/* add rules for better modal thankyoudisplay*/
+#thankyou{
+  padding-bottom: 360px;
+  padding-top:300px;
+  text-align:center;
+  font-size: xx-large;
+  font-weight: 200;
+}
 /*add greetings display none to hide it */
-#greetings{
-  display:none;
-
+#greetings {
+  display: none;
 }
 @media screen and (min-width: 800px) {
-
-  .bground > div{
+  .bground > div {
     height: 80vh;
+    display:flex;
   }
 }
+/* adding rules in order to respect the template given*/
 @media screen and (max-width: 800px) {
   .bground {
     background-color: transparent;
     padding-top: 3rem;
-
   }
+  .header-logo > img {
+    width: 6rem;
+  }
+  .topnav {
+    margin: 20px; 
+  }
+  .hero-content {
+    padding: 20px 0px;
+  }
+  .hero-text {
+    margin-top: 20px;
+    width:310px;
+  
+  }
+  .copyrights{
+    font-size:0.7rem;
+    padding:0!important;
+    margin:0, 10px,10px, 10px;
+  }
+  .btn-signup, .btn-validate  {
+    font-size: 0.8rem;
+
+      padding: 10px 25px;
+  }
+  label, .text-label {
+    font-size:0.8rem;
+  }
+  #cities{
+    font-size:0.5rem;
+  }
+  #thankyou
+{
+  padding-bottom: 210px;
+  padding-top: 210px;
+  text-align: center;
+  font-size: xx-large;
+  font-weight: 200;
 }
+  }
+

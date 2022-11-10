@@ -57,8 +57,8 @@
           <span class="close" onclick = closeModal()></span>
           <div class="modal-body">
             <div id = "greetings">
-              <div class="content" >
-                Merci pour votre inscription
+              <div class="content" id="thankyou" >
+                Merci pour <br>votre inscription
               </div>
               <button type=" button" class=" btn-submit" onclick="submitForm()">Fermer</button>
             </div>
@@ -122,7 +122,7 @@
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
-                class="formData">
+                class="formData" id="cities">
                 <input
                   class="checkbox-input"
                   type="radio" 
