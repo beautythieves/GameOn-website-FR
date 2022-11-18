@@ -12,9 +12,7 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const modalBody = document.querySelector(".modal-body");
-
 const form = document.getElementById("reserve");
-
 const firstName = document.getElementById("first");
 const lastName = document.getElementById("last");
 const email = document.getElementById("email");
@@ -44,15 +42,11 @@ modalbg.addEventListener("click", (event) => {
 });
 // submit the form when click on "fermer" modal button
 document.querySelector(".btn-submit").addEventListener("click", submitForm);
-
 function submitForm(event) {
   event.preventDefault();
   event.stopPropagation();
   form.submit();
 }
-
-//close modal event
-//modalBtn.forEach((btn) => btn.addEventListener("click", closeModal));
 
 /* when submit form => function validateform start*/
 document.querySelector(".btn-validate").addEventListener("click", validateForm);
@@ -77,7 +71,6 @@ function validateForm(event) {
   greetings();
 }
 
-/*pb de hauteru de la div content*/
 function greetings() {
   document.querySelector("#greetings").style.display = "block";
   form.style.display = "none";
@@ -85,19 +78,20 @@ function greetings() {
 /**
  * FUNCTION VALIDATION FIRST NAME OK
  *
- * @return  {Boolean}  true si valide sinon false
+ * @return  {Boolean}  true if  valid, if not false
  */
 function validateFirstName() {
-  const regexFirstName = /^[A-Z a-z]{2,25}$/; /*min 2 caracteres*/
+  const regexFirstName = /^[A-Z a-z]{2,25}$/; /*min 2 types*/
   return validateField(
     firstName,
     regexFirstName,
     "Veuillez entrez un prénom valide"
   );
 }
+
 //FUNCTION VALIDATION NAME AND ERROR MESAGE OK!!!
 function validateLastName() {
-  const regexLastName = /^[A-Z a-z]{2,25}$/; /*min 2 caracteres*/
+  const regexLastName = /^[A-Z a-z]{2,25}$/; /*min 2 types*/
   return validateField(
     lastName,
     regexLastName,
@@ -114,15 +108,12 @@ function validateEmail() {
 
 function setDateLimits() {
   const dateToday = new Date();
-  // console.log (dateToday);
-  const day = dateToday.getDate(); /* jour du mois en cours */
+  const day = dateToday.getDate(); /*  day of this month  */
   console.log(day);
   const month =
     dateToday.getMonth() +
-    1; /* mois de l'année en cours"+1" car renvoie "0" pour janvier*/
-  // console.log (month);
-  const year = dateToday.getFullYear(); /* année en cours*/
-  // console.log (year);
+    1; /* month of this year "+1" because return "0" for january*/
+  const year = dateToday.getFullYear(); /* this year*/
   let date = new Date(`${year - 18}-${month}-${day}`)
     .toISOString()
     .split("T")[0];
@@ -138,11 +129,11 @@ function validateDate() {
   let isValid = true;
   const selectedDate = new Date(birthdate.value);
   const dateToday = new Date();
-  const day = dateToday.getDate(); /* jour du mois en cours */
+  const day = dateToday.getDate(); /* day of this month*/
   const month =
     dateToday.getMonth() +
-    1; /* mois de l'année en cours"+1" car renvoie "0" pour janvier*/
-  const year = dateToday.getFullYear(); /* année en cours*/
+    1; /*month of this year "+1" because return "0" for january*/
+  const year = dateToday.getFullYear(); /* this year*/
   let date = new Date(`${year - 18}-${month}-${day}`);
   if (selectedDate > date) {
     isValid = false;
@@ -187,7 +178,6 @@ function validateRadio() {
     .closest(`.formData`);
   console.log(parent, "parent");
   if (checkradio != null) {
-    //Teste si une ville est cochée
     parent.setAttribute("data-error-visible", "false");
     return true;
   }

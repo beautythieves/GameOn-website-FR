@@ -546,14 +546,12 @@ footer {
 #greetings {
   display: none;
 }
+/* adding rules in order to respect the template given*/
 @media screen and (min-width: 800px) {
   .bground > div {
     height: 80vh;
     display:flex;
   }
-}
-/* adding rules in order to respect the template given*/
-@media screen and (max-width: 800px) {
   .bground {
     background-color: transparent;
     padding-top: 3rem;
@@ -570,7 +568,6 @@ footer {
   .hero-text {
     margin-top: 20px;
     width:310px;
-  
   }
   .copyrights{
     font-size:0.7rem;
@@ -588,8 +585,7 @@ footer {
   #cities{
     font-size:0.5rem;
   }
-  #thankyou
-{
+  #thankyou{
   padding-bottom: 210px;
   padding-top: 210px;
   text-align: center;
