@@ -25,5 +25,48 @@ Dans le formulaire: Des messages d'erreur spécifiques doivent apparaître sous 
     (6) La case des conditions générales est cochée, l'autre case est facultative / peut être laissée décochée.
     Conserver les données du formulaire (ne pas effacer le formulaire) lorsqu'il ne passe pas la validation.
 
+Rapport de l'évaluateur suite à la soutenance:
+Remarques sur l'évaluation
 
+Compétences évaluées
+
+En vous basant sur les critères d’évaluation dans le guide mentor du projet, définissez le statut d'acquisition de chaque compétence listée ci-dessous :
+
+Validé - Expliquez pourquoi en partageant des retours constructifs
+
+Non validé - Expliquez de façon constructive pourquoi et comment l’étudiant peut s’améliorer, en vous appuyant sur les critères d’évaluations
+
+1. Programmer en JavaScript
+
+Validé
+
+Commentaires :
+
+✅ Seul du Vanilla Javascript est utilisé.
+✅ La modale se lance lorsque l'utilisateur clique sur le bouton de la page d’accueil.
+✅ L'icône de fermeture de la modale (x) est fonctionnelle/codée pour fermer la modale.
+✅ Le bouton de soumission du formulaire capture les données
+✅ Les entrées erronées comportent des messages d'erreur spécifiques.
+✅ Le formulaire n'est PAS effacé lorsque des erreurs sont présentes.
+✅ Un formulaire validé avec des entrées correctes renvoie un message de réussite en sortie. 
+
+Livrable
+
+Points forts :
+
+Decoupage du code js en fonctions courtes et commentées ;
+Usage d'expressions régulières pour valider les données ;
+Usage des data attribute pour afficher/masquer les messages d'erreurs 
+Correction des issues sur l'interface ;
+
+Axes d'amélioration :
+
+Uniformiser les comentaires et ajouter sur toutes les fonctions ;
+Eviter de mixer la gestion des evenements du dom entre le javascript et le html ;
+
+Soutenance
+
+Remarques :
+
+Bonne présentation du travail, les directives ont bien été respectées.
 
